@@ -2730,7 +2730,7 @@ Licensed under the MIT license.
 
         if (s.lines.show || s.points.show) {
           for (j = 0; j < points.length; j += ps) {
-            var x = points[j], y = 0;
+            var x = points[j], y = points[j + 1];
             if (x == null) continue;
 
             // For points and lines, the cursor must be within a
