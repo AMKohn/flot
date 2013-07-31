@@ -706,6 +706,7 @@ Licensed under the MIT license.
     plot.setData = setData;
     plot.setupGrid = setupGrid;
     plot.draw = draw;
+    plot.findNearbyItem = findNearbyItem;
     plot.getPlaceholder = function() {
       return placeholder;
     };
@@ -2701,8 +2702,8 @@ Licensed under the MIT license.
       redrawTimeout = null;
 
     // returns the data item the mouse is over, or null if none is found
-    function findNearbyItem(mouseX, mouseY, seriesFilter) {
-      var maxDistance = options.grid.mouseActiveRadius,
+    function findNearbyItem(mouseX, mouseY, seriesFilter, maxDistance) {
+      var maxDistance = maxDistance || options.grid.mouseActiveRadius,
         smallestDistance = maxDistance * maxDistance + 1,
         item = null,
         foundPoint = false,
@@ -2729,8 +2730,7 @@ Licensed under the MIT license.
 
         if (s.lines.show || s.points.show) {
           for (j = 0; j < points.length; j += ps) {
-            var x = points[j],
-              y = points[j + 1];
+            var x = points[j], y = 0;
             if (x == null) continue;
 
             // For points and lines, the cursor must be within a
