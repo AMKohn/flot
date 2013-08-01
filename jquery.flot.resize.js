@@ -9,6 +9,8 @@ resize event plugin) - if the size changes, it will redraw the plot.
 There are no options. If you need to disable the plugin for some plots, you
 can just fix the size of their placeholders.
 
+Modified by Avi Kohn
+
 */
 
 /* Inline dependency:
@@ -29,14 +31,16 @@ can just fix the size of their placeholders.
         function onResize() {
             var placeholder = plot.getPlaceholder();
 
-            // somebody might have hidden us and we can't plot
-            // when we don't have the dimensions
             if (placeholder.width() == 0 || placeholder.height() == 0)
                 return;
-
+            
+            plot.trigger("resizestart");
+            
             plot.resize();
             plot.setupGrid();
             plot.draw();
+            
+            plot.trigger("resizeend");
         }
         
         function bindEvents(plot, eventHolder) {
