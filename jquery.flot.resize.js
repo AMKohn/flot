@@ -34,13 +34,13 @@ Modified by Avi Kohn
             if (placeholder.width() == 0 || placeholder.height() == 0)
                 return;
             
-            plot.trigger("resizestart");
+            placeholder.trigger("resizestart");
             
             plot.resize();
             plot.setupGrid();
             plot.draw();
             
-            plot.trigger("resizeend");
+            placeholder.trigger("resizeend");
         }
         
         function bindEvents(plot, eventHolder) {
