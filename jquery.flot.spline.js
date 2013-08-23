@@ -75,9 +75,10 @@
 
 	function drawLine(points, ctx, height, fill, seriesColor) {
 		var c = $.color.parse(seriesColor);
-	c.a = typeof fill == "number" ? fill : .3;
-	c.normalize();
-	c = c.toString();
+
+		c.a = typeof fill == "number" ? fill : .3;
+		c.normalize();
+		c = c.toString();
 
 		ctx.beginPath();
 		ctx.moveTo(points[0][0], points[0][1]);
@@ -86,13 +87,13 @@
 
 		for (var i = 0; i < plength; i++) {
 			ctx[points[i][3]].apply(ctx, points[i][2]);
-	}
+		}
 
-	ctx.stroke();
+		ctx.stroke();
 
-	ctx.lineWidth = 0;
-	ctx.lineTo(points[plength - 1][0], height);
-	ctx.lineTo(points[0][0], height);
+		ctx.lineWidth = 0;
+		ctx.lineTo(points[plength - 1][0], height);
+		ctx.lineTo(points[0][0], height);
 
 		ctx.closePath();
 		
@@ -117,7 +118,7 @@
 		type = type + 'CurveTo';
 
 		if (line.length == 0) line.push([points[0], points[1], cpoints.concat(points.slice(2)), type]);
-	else if (type == "quadraticCurveTo" && points.length == 2) {
+		else if (type == "quadraticCurveTo" && points.length == 2) {
 			cpoints = cpoints.slice(0, 2).concat(points);
 
 			line.push([points[0], points[1], cpoints, type]);
